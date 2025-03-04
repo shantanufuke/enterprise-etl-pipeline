@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  airflow:
+    image: puckel/docker-airflow
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./spark_jobs:/opt/airflow/spark_jobs
+      - ./sql_queries:/opt/airflow/sql_queries
+    environment:
+      - LOAD_EX=y
+    depends_on:
+      - spark
+      - postgres
+
+  spark:
+    image: bitnami/spark
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: analytics
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"

@@ -1,0 +1,6 @@
+S3_BUCKET = "your-s3-bucket"
+REDSHIFT_HOST = "your-redshift-cluster-endpoint"
+REDSHIFT_DB = "analytics"
+REDSHIFT_USER = "admin"
+REDSHIFT_PASSWORD = "password"
+REDSHIFT_IAM_ROLE = "arn:aws:iam::123456789012:role/RedshiftS3Access"
